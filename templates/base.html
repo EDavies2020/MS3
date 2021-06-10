@@ -17,7 +17,7 @@
 
 <body>
 
-<!-- top nav bar -->
+    <!-- top nav bar -->
     <header>
         <nav>
             <div class="nav-wrapper logo-shadow blue darken-4">
@@ -31,18 +31,34 @@
                 </ul>
             </div>
         </nav>
-<!-- mobile nav bar -->
+        <!-- mobile nav bar -->
         <ul class="sidenav" id="mobile-demo">
-            <li><h4 class="center-align sidebar blue darken-4"><strong>GF Kids</strong></h4></li>
+            <li>
+                <h4 class="center-align sidebar blue darken-4"><strong>GF Kids</strong></h4>
+            </li>
             <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
             <li><a href="#">Log out</a></li>
             <li><a href="#">Log in</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
     </header>
+    <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
 
-    {% block content %}
-    {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
